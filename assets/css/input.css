@@ -1,0 +1,23 @@
+/*!
+Theme Name: syokudaikakkokai.com
+Description: Official theme for 燭台（怪）
+Version: 0.1.0
+Author: Lyuichi
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .site-navigation.active {
+        @apply flex flex-col absolute top-full left-0 w-full bg-white/95 backdrop-blur-md shadow-lg p-6 gap-6 border-t border-gray-100;
+    }
+
+    .site-navigation.active .menu-item {
+        @apply w-full text-center border-b border-gray-100 pb-4 last:border-0;
+    }
+
+    .site-navigation.active ul {
+        @apply flex-col gap-4;
+    }
+}

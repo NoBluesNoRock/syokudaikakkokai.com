@@ -1,0 +1,29 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# WordPress
+wp-config.php
+wp-content/uploads/
+wp-content/debug.log
+*.log
+*.xml
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Build
+# We usually commit style.css for themes, but if you want to keep it clean you can ignore it.
+# For this project, style.css is the main output, so we KEEP it.
+# assets/css/input.css is the source.
+
+# Local config
+local-config.php
