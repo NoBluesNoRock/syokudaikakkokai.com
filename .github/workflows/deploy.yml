@@ -1,0 +1,50 @@
+name: Deploy to FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build
+      run: npm run build
+
+    - name: FTP Deploy
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.SYOKUDAIKAKKOKAICOM_FTP_SERVER }}
+        username: ${{ secrets.SYOKUDAIKAKKOKAICOM_FTP_USER }}
+        password: ${{ secrets.SYOKUDAIKAKKOKAICOM_FTP_PW }}
+        server-dir: ${{ secrets.SYOKUDAIKAKKOKAICOM_FTP_PASS }}
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          .gitignore
+          .editorconfig
+          .vscode/**
+          README.md
+          MEMO.md
+          LICENSE
+          package*.json
+          tailwind.config.js
+          assets/css/**
